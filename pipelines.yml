@@ -48,11 +48,9 @@ pipelines:
             - name: artifactory_integration                           # <-- replace with your artifactory integration
         execution:
           onStart:
-            - env | grep int_artifactory_integration_url
             - export temp=$(dirname $int_artifactory_integration_url)
             - temp_var=${temp#https://}
             - export int_artifactory_integration_url=$(echo ${temp_var})
-            - echo $int_artifactory_integration_url
 
 
       - name: docker_push
@@ -66,9 +64,7 @@ pipelines:
             - name: docker_build
           outputResources:
             - name: busybox_image_4
-        execution:
-          onStart:
-            - env
+
 
       - name: publish_dbp_build
         type: PublishBuildInfo
@@ -78,14 +74,4 @@ pipelines:
           outputResources:
             - name: dbp_build_info
 
-      - name: promote_dbp_build
-        type: PromoteBuild
-        configuration:
-          targetRepository: demo-pipelines
-          integrations:
-            - name: artifactory_integration
-          inputResources:
-            - name: dbp_build_info
-          outputResources:
-            - name: dbp_promoted_build_info
 
