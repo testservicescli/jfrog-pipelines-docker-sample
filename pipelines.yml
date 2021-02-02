@@ -7,7 +7,7 @@ resources:
       branches:
         include: master
 
-  - name: busybox_image_1
+  - name: busybox_image_2
     type: Image
     configuration:
       registry: artifactory_integration                                # <-- replace with your artifactory integration
@@ -60,7 +60,7 @@ pipelines:
           inputSteps:
             - name: docker_build
           outputResources:
-            - name: busybox_image_1
+            - name: busybox_image_2
         execution:
           onStart:
             - env
