@@ -12,7 +12,7 @@ resources:
     configuration:
       registry: artifactory_integration                                # <-- replace with your artifactory integration
       sourceRepository: docker-remote-repo               # <-- required if registry is Artifactory
-      imageName: ${int_artifactory_integration_url}docker-remote-repo/busybox  # < -- replace with your image path and name
+      imageName: ${dirname int_artifactory_integration_url}/docker-remote-repo/busybox  # < -- replace with your image path and name
       imageTag: latest
       autoPull: true
       
@@ -40,7 +40,7 @@ pipelines:
           affinityGroup: dbp_group
           dockerFileLocation: .
           dockerFileName: Dockerfile
-          dockerImageName: ${int_artifactory_integration_url}docker-remote-repo/busybox # replace with your image path and name
+          dockerImageName: ${dirname int_artifactory_integration_url}/docker-remote-repo/busybox # replace with your image path and name
           dockerImageTag: ${run_number}
           inputResources:
             - name: dbp_repo
