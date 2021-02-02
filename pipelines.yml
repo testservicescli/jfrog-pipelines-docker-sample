@@ -51,7 +51,7 @@ pipelines:
             - env | grep int_artifactory_integration_url
             - export temp=$(dirname $int_artifactory_integration_url)
             - temp_var=${temp#https://}
-            - export int_artifactory_integration_url=$(echo ${temp_var}%$temp)
+            - export int_artifactory_integration_url=$(echo ${temp_var})
             - echo $int_artifactory_integration_url
 
 
