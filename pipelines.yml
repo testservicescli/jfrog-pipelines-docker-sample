@@ -46,9 +46,9 @@ pipelines:
             - name: dbp_repo
           integrations:
             - name: artifactory_integration                           # <-- replace with your artifactory integration
-         execution:
-           onStart:
-             - env | grep int_artifactory_integration_url
+        execution:
+          onStart:
+            - env | grep int_artifactory_integration_url
 
       - name: docker_push
         type: DockerPush
