@@ -49,10 +49,11 @@ pipelines:
         execution:
           onStart:
             - env | grep int_artifactory_integration_url
+            - temp_var=${var#https://}
             - export temp=$(dirname $int_artifactory_integration_url)
-            - export int_artifactory_integration_url=$(echo $temp)
+            - export int_artifactory_integration_url=$(echo ${temp_var}%$temp)
             - echo $int_artifactory_integration_url
-            
+
 
       - name: docker_push
         type: DockerPush
