@@ -7,12 +7,12 @@ resources:
       branches:
         include: master
 
-  - name: busybox_image
+  - name: busybox_image_1
     type: Image
     configuration:
       registry: artifactory_integration                                # <-- replace with your artifactory integration
       sourceRepository: docker-remote-repo               # <-- required if registry is Artifactory
-      imageName: ${int_artifactory_integration_url}/docker-remote-repo/busybox  # < -- replace with your image path and name
+      imageName: ${int_artifactory_integration_url}docker-remote-repo/busybox  # < -- replace with your image path and name
       imageTag: latest
       autoPull: true
       
@@ -40,7 +40,7 @@ pipelines:
           affinityGroup: dbp_group
           dockerFileLocation: .
           dockerFileName: Dockerfile
-          dockerImageName: ${int_artifactory_integration_url}/docker-remote-repo/busybox # replace with your image path and name
+          dockerImageName: ${int_artifactory_integration_url}docker-remote-repo/busybox # replace with your image path and name
           dockerImageTag: ${run_number}
           inputResources:
             - name: dbp_repo
@@ -57,7 +57,7 @@ pipelines:
           inputSteps:
             - name: docker_build
           outputResources:
-            - name: busybox_image
+            - name: busybox_image_1
 
       - name: publish_dbp_build
         type: PublishBuildInfo
