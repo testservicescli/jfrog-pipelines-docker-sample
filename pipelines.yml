@@ -49,8 +49,8 @@ pipelines:
         execution:
           onStart:
             - env | grep int_artifactory_integration_url
-            - export temp = $(dirname $int_artifactory_integration_url)
-            - export int_artifactory_integration_url = $(temp)
+            - export temp=$(dirname $int_artifactory_integration_url)
+            - export int_artifactory_integration_url=$(temp)
             - echo $int_artifactory_integration_url
             
 
