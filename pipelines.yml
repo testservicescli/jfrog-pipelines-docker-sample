@@ -58,7 +58,6 @@ pipelines:
         configuration:
           affinityGroup: dbp_group
           targetRepository: docker-local-repo
-          forceXrayScan: true
           integrations:
             - name: artifactory_integration                            # <-- replace with your artifactory integration
           inputSteps:
@@ -73,6 +72,13 @@ pipelines:
           inputSteps:
             - name: docker_push
           outputResources:
+            - name: dbp_build_info
+      
+      
+      - name: xrayScanStep
+        type: XrayScan
+        configuration:
+          inputResources:
             - name: dbp_build_info
 
 
