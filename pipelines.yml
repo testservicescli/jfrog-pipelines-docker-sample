@@ -73,12 +73,5 @@ pipelines:
             - name: docker_push
           outputResources:
             - name: dbp_build_info
-      
-      
-      - name: xrayScanStep
-        type: XrayScan
-        configuration:
-          inputResources:
-            - name: dbp_build_info
 
 
